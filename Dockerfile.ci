@@ -12,8 +12,6 @@ ENV PATH=/var/www/vendor/bin:$PATH
 RUN apt-get update && apt-get install -y --no-install-recommends \
       # for bz2
       bzip2 libbz2-dev \
-      # for pecl_http
-      libevent-dev \
       # for ftp
       libssl-dev \
       # for gd
