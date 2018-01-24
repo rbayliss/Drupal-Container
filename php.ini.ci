@@ -7,3 +7,14 @@ post_max_size = 128M
 memory_limit = 256M
 sendmail_path = /bin/true
 date.timezone = UTC
+
+;This is for APCu.
+apc.ttl=7200
+
+opcache.fast_shutdown=1
+opcache.interned_strings_buffer=16
+opcache.log_verbosity_level=2
+opcache.max_accelerated_files=4000
+opcache.memory_consumption=96
+opcache.optimization_level=0
+opcache.revalidate_freq=0
