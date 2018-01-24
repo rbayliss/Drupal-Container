@@ -12,6 +12,8 @@ ENV PATH=/var/www/vendor/bin:$PATH
 RUN apt-get update && apt-get install -y --no-install-recommends \
       # for bz2
       bzip2 libbz2-dev \
+      # for pecl_http
+      libevent-dev \
       # for ftp
       libssl-dev \
       # for gd
@@ -61,8 +63,10 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
       sysvsem \
       sysvshm \
       zip \
-    && pecl install redis-2.2.8 apcu-4.0.11 \
-    && docker-php-ext-enable redis apcu \
+    && pecl install redis-2.2.8 apcu-4.0.11 raphf-1.1.2 propro-1.0.2 \
+    && docker-php-ext-enable redis apcu raphf propro \
+    && pecl install pecl_http-2.5.6 \
+    && docker-php-ext-enable http \
     && printf "upload_max_filesize = 128M\npost_max_size = 128M" > $PHP_INI_DIR/conf.d/00-max_filesize.ini
 
 # Configure Apache:
