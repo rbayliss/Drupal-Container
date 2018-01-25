@@ -36,8 +36,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       pngquant \
       # For imagick
       imagemagick \
-      libmagickwand5 \
-      libmagickcore5 \
       libfftw3-double3 \
       # for yaml
       libyaml-dev \
