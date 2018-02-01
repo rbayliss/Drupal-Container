@@ -1,0 +1,18 @@
+# This docker-compose file can be used to quickly build containers for testing changes.
+# It is not a functional application.
+#
+# To build these containers, run:
+#
+#     docker-compose build
+#
+# This will build all of the containers. To build only a single container:
+#
+#     docker-compose build ci
+#
+# This will build only the `ci` container.
+version: '3'
+
+services:
+  ci:
+    image: massgov/drupal-container:ci
+    build: ./ci
