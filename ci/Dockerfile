@@ -86,7 +86,8 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bi
   && rm -r /root/.composer/cache \
   && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-amd64-v0.6.0.tar.gz | tar -C /usr/local/bin -xzv \
   && chmod +x /usr/local/bin/dockerize \
-  && ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts
+  && ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts \
+  && git config --global core.safecrlf false
 
 ADD etc/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
 ADD etc/php-overrides.ini $PHP_INI_DIR/conf.d/zz-overrides.ini
