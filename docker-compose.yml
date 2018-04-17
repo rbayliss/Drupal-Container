@@ -17,7 +17,7 @@ services:
     build: ./ci
 
   dev:
-    image: massgov/drupal-container:ci
+    image: massgov/drupal-container:dev
     build: ./dev
     ports:
       - ${DOCKER_PORTS-80:80}
