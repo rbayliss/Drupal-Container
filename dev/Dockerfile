@@ -6,6 +6,7 @@ ENV APACHE_DOCROOT /var/www/html
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_REQUEST_WORKERS 150
+ENV SENDMAIL_PATH /bin/true
 ENV PATH=/var/www/mass.local/vendor/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -105,6 +106,12 @@ RUN apt-get update \
   && npm install -g yarn \
   && npm cache clean --force \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install the Sendmail alternative suggested by Mailhog.
+RUN curl -O https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
+  && mv mhsendmail_linux_amd64 /usr/bin/mhsendmail \
+  && chmod +x /usr/bin/mhsendmail
+
 
 # Install development tools.
 RUN pecl install xdebug \
