@@ -7,6 +7,7 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_REQUEST_WORKERS 150
 ENV SENDMAIL_PATH /bin/true
+ENV MEMORY_LIMIT 256m
 ENV PATH=/var/www/mass.local/vendor/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
