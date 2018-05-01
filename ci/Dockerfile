@@ -1,12 +1,12 @@
 
-FROM php:5.6-apache
+FROM php:7.1-apache
 
-# common-php56
 ENV DEBIAN_FRONTEND noninteractive
 ENV APACHE_DOCROOT /var/www/html
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_REQUEST_WORKERS 150
+ENV MEMORY_LIMIT 256m
 ENV PATH=/var/www/vendor/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       pngquant \
       # For imagick
       imagemagick \
-      libfftw3-double3 \
+      libmagickwand-dev \
       # for yaml
       libyaml-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -54,7 +54,6 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
       intl \
       ldap \
       mcrypt \
-      mysql \
       mysqli \
       opcache \
       pcntl \
@@ -66,9 +65,9 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
       sysvsem \
       sysvshm \
       zip \
-    && pecl install redis-2.2.8 apcu-4.0.11 raphf-1.1.2 propro-1.0.2 yaml-1.3.1 \
-    && docker-php-ext-enable redis apcu raphf propro yaml \
-    && pecl install pecl_http-2.5.6 \
+    && pecl install apcu raphf propro yaml imagick \
+    && docker-php-ext-enable apcu raphf propro yaml imagick \
+    && pecl install pecl_http \
     && docker-php-ext-enable http \
     && printf "upload_max_filesize = 128M\npost_max_size = 128M" > $PHP_INI_DIR/conf.d/00-max_filesize.ini
 
@@ -88,13 +87,13 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bi
   && rm -r /root/.composer/cache \
   && curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-linux-amd64-v0.6.0.tar.gz | tar -C /usr/local/bin -xzv \
   && chmod +x /usr/local/bin/dockerize \
-  && ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts
+  && ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts \
+  && git config --global core.safecrlf false
 
-ADD mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
-ADD php.ini.ci $PHP_INI_DIR/conf.d/zz-overrides.ini
-ADD scripts/* /usr/local/bin/
+ADD etc/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
+ADD etc/php-overrides.ini $PHP_INI_DIR/conf.d/zz-overrides.ini
+ADD bin/* /usr/local/bin/
 CMD ["apache2-foreground-enhanced"]
-# /common-php56
 
 # NodeJS,
 RUN apt-get update \
