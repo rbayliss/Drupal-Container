@@ -6,6 +6,7 @@ ENV APACHE_DOCROOT /var/www/html
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_REQUEST_WORKERS 150
+ENV MEMORY_LIMIT 256m
 ENV PATH=/var/www/vendor/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
