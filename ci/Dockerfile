@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libldap2-dev \
       # for mcrypt
       libmcrypt-dev \
+      # for memcached
+      libz-dev libmemcached-dev \
       # for mysql
       mysql-client \
       # for git
@@ -65,8 +67,8 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
       sysvsem \
       sysvshm \
       zip \
-    && pecl install apcu raphf propro yaml imagick \
-    && docker-php-ext-enable apcu raphf propro yaml imagick \
+    && pecl install apcu memcache raphf propro yaml imagick \
+    && docker-php-ext-enable apcu memcache raphf propro yaml imagick \
     && pecl install pecl_http \
     && docker-php-ext-enable http \
     && printf "upload_max_filesize = 128M\npost_max_size = 128M" > $PHP_INI_DIR/conf.d/00-max_filesize.ini
