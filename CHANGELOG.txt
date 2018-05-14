@@ -5,10 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+
+## [1.0.6] - 5-14-18
 ### Added
 - Add memcached PECL extension
 
-### [1.0.5] - 5-2-18
+## [1.0.5] - 5-2-18
 ### Added
 - Allow configurable PHP memory limit
 

@@ -12,6 +12,7 @@ The variants of this image are:
 Environment variables
 ------------------
 1. XDEBUG_ENABLE: Adds xdebug extension which is configured to autostart (assumes Docker for Mac).
+2. MEMORY_LIMIT: Set the PHP memory limit that is used.
 
 Making changes
 --------------
