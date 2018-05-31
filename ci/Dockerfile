@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       # for ftp
       libssl-dev \
       # for gd
-      libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+      libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
       # for intl
       libicu-dev \
       # for dom
