@@ -7,7 +7,7 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_REQUEST_WORKERS 150
 ENV MEMORY_LIMIT 256m
-ENV PATH=/var/www/vendor/bin:$PATH
+ENV PATH=/var/www/mass.local/vendor/bin:$PATH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       # for bz2
@@ -105,6 +105,6 @@ RUN apt-get update \
   && echo 'deb-src https://deb.nodesource.com/node_6.x jessie main' >> /etc/apt/sources.list.d/nodesource.list \
   && apt-get update \
   && apt-get install nodejs \
-  && npm install -g yarn \
+  && npm install -g yarn eslint \
   && npm cache clean --force \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
