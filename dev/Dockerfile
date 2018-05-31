@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       # for ftp
       libssl-dev \
       # for gd
-      libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+      libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
       # for intl
       libicu-dev \
       # for dom
@@ -100,13 +100,13 @@ CMD ["apache2-foreground-enhanced"]
 
 # NodeJS,
 RUN apt-get update \
-  && apt-get install -y apt-transport-https lsb-release gnupg > /dev/null 2>&1 \
+  && apt-get install -y apt-transport-https lsb-release > /dev/null 2>&1 \
   && curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
   && echo 'deb https://deb.nodesource.com/node_6.x jessie main' > /etc/apt/sources.list.d/nodesource.list \
   && echo 'deb-src https://deb.nodesource.com/node_6.x jessie main' >> /etc/apt/sources.list.d/nodesource.list \
   && apt-get update \
   && apt-get install nodejs \
-  && npm install -g yarn eslint \
+  && npm install -g yarn \
   && npm cache clean --force \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

@@ -6,10 +6,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## [1.0.7] - 5-31-18
-### Added
-- ESLint
-
 ## [1.0.6] - 5-14-18
 ### Added
 - Add memcached PECL extension
