@@ -108,3 +108,8 @@ RUN apt-get update \
   && npm install -g yarn \
   && npm cache clean --force \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# CI CLI tools:
+RUN apt-get update \
+  && apt-get -y -qq install awscli \
+  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
