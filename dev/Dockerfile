@@ -70,7 +70,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
       zip \
     && pecl install apcu memcached raphf propro yaml imagick \
     && docker-php-ext-enable apcu memcached raphf propro yaml imagick \
-    && pecl install pecl_http \
+    && pecl install pecl_http-3.1.0 \
     && docker-php-ext-enable http \
     && printf "upload_max_filesize = 128M\npost_max_size = 128M" > $PHP_INI_DIR/conf.d/00-max_filesize.ini
 
