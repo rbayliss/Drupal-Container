@@ -3,6 +3,10 @@ Drupal Application Container
 
 These [Dockerfiles](https://docs.docker.com/engine/reference/builder/) define the [massgov/drupal-container](https://hub.docker.com/r/massgov/drupal-container) images.  These images are automatically built by Docker Hub.
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/massgov/drupal-container.svg)](https://hub.docker.com/r/massgov/drupal-container)
+[![Docker Stars](https://img.shields.io/docker/stars/massgov/drupal-container.svg)](https://hub.docker.com/r/massgov/drupal-container)
+
+
 Variants
 --------
 The variants of this image are:
