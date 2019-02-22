@@ -29,6 +29,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libz-dev libmemcached-dev \
       # for mysql
       mysql-client \
+      # for drush ma:deploy
+      wget \
       # for drush sql:sync
       rsync \
       # for git
